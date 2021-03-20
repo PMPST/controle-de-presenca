@@ -1,14 +1,19 @@
 package com.controlechamada.chamada.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.*;
 
 @Entity
 @Table(name="TB_TURMA")
-public class Turma {
+public class Turma implements Serializable {
+    private final long serialVersionUID = 1L;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -72,6 +77,15 @@ public class Turma {
         return aulas;
     }
 
+    @JsonProperty(value = "alunos", access = JsonProperty.Access.READ_ONLY)
+    public Integer getTotalAlunos(){
+        return alunos.size();
+    }
+    @JsonProperty(value = "aulas", access = JsonProperty.Access.READ_ONLY)
+    public Integer getTotalAulas(){
+        return aulas.size();
+    }
+
     @Override
     public String toString() {
         return "Turma{" +
@@ -93,4 +107,5 @@ public class Turma {
     public int hashCode() {
         return Objects.hash(id);
     }
+
 }

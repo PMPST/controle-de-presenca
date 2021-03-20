@@ -1,12 +1,17 @@
 package com.controlechamada.chamada.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
 @Table(name = "TB_CHAMADA")
-public class Chamada {
+public class Chamada implements Serializable {
+    private final long serialVersionUID = 1L;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -72,6 +77,7 @@ public class Chamada {
         this.aula = aula;
     }
 
+    @JsonIgnore
     public Aluno getAluno() {
         return aluno;
     }

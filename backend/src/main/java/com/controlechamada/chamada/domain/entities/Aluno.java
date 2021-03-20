@@ -1,6 +1,9 @@
 package com.controlechamada.chamada.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +11,9 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "TB_ALUNO")
-public class Aluno {
+public class Aluno implements Serializable {
+    private final long serialVersionUID = 1L;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -86,6 +91,7 @@ public class Aluno {
         this.dataMatricula = dataMatricula;
     }
 
+    @JsonIgnore
     public List<Chamada> getPresencas() {
         return presencas;
     }
