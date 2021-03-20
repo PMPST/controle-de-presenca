@@ -1,6 +1,7 @@
 package com.controlechamada.chamada.domain.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -37,6 +38,7 @@ public class Aluno implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "turma_id")
+    @JsonProperty(value = "turma", access = JsonProperty.Access.WRITE_ONLY)
     private Turma turma;
 
 
