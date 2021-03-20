@@ -40,5 +40,4 @@ public class TurmaService {
     private void updateData(Turma entity, Turma dados){
         entity.setDescricao(dados.getDescricao());
     }
-
 }
