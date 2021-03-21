@@ -33,7 +33,7 @@ public class Aluno implements Serializable {
     private LocalDate dataMatricula;
 
 
-    @OneToMany(mappedBy = "aluno")
+    @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL)
     private List<Chamada> presencas = new ArrayList<>();
 
     @ManyToOne

@@ -27,10 +27,10 @@ public class Turma implements Serializable {
     private LocalDate dataInicio;
 
 
-    @OneToMany(mappedBy = "turma")
+    @OneToMany(mappedBy = "turma", cascade = CascadeType.ALL)
     private Set<Aluno> alunos = new HashSet<>();
 
-    @OneToMany(mappedBy = "turma")
+    @OneToMany(mappedBy = "turma", cascade = CascadeType.ALL)
     private List<Aula> aulas = new ArrayList<>();
 
 

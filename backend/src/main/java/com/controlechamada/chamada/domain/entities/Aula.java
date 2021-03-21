@@ -31,7 +31,7 @@ public class Aula implements Serializable {
     @JoinColumn(name="turma_id")
     private Turma turma;
 
-    @OneToMany(mappedBy = "aula")
+    @OneToMany(mappedBy = "aula", cascade = CascadeType.ALL)
     private List<Chamada> chamada = new ArrayList<>();
 
 
