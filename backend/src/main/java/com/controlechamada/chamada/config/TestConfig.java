@@ -39,21 +39,20 @@ public class TestConfig  implements CommandLineRunner {
         Turma t = new Turma(null, "2TDST", LocalDate.now());
         t = turmaRepository.save(t);
 
-        Aluno aluno = new Aluno(null, "João Queiroz", LocalDate.now(), "", LocalDate.now(), t);
+        Aluno aluno = new Aluno(null, "João Queiroz", LocalDate.now(), null, LocalDate.now(), t);
         aluno = alunoRepository.save(aluno);
 
-        Aula aula = new Aula(null, "Aula 01 - Teste", LocalDate.now(), t);
-        aula = aulaRepository.save(aula);
-
-        Chamada chamada = new Chamada(null, true, aula.getData(), aula, aluno);
-        Chamada chamada2 = new Chamada(null, false, aula.getData(), aula, aluno);
-
-        chamada = chamadaRepository.save(chamada);
-        chamada2 = chamadaRepository.save(chamada2);
-
-        aluno.getPresencas().addAll(Arrays.asList(chamada, chamada2));
+        Aula a1 = new Aula(null, "Aula 01 - Teste de GET", LocalDate.now(), t);
+        Aula a2 = new Aula(null, "Aula 02 - Teste de POST", LocalDate.now().plusDays(1), t);
+        aulaRepository.saveAll(Arrays.asList(a1, a2));
 
 
+        Chamada c1 = new Chamada(null, true, a1.getData(), a1, aluno);
+        Chamada c2 = new Chamada(null, false, a2.getData(), a2, aluno);
+        chamadaRepository.saveAll(Arrays.asList(c1, c2));
+
+
+        aluno.getPresencas().addAll(Arrays.asList(c1, c2));
         aluno = alunoRepository.save(aluno);
     }
 

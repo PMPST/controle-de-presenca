@@ -13,6 +13,11 @@ public class ChamadaService {
     @Autowired
     private ChamadaRepository repository;
 
+    @Autowired
+    private AlunoService alunoService;
+
+
+
 
     public Chamada findById(Long id){
         return repository.findById(id).orElseThrow(() -> new NotFoundException("Nenhuma chamada encontrado para o id: " + id));
@@ -24,7 +29,9 @@ public class ChamadaService {
     }
 
     public Chamada insert(Chamada chamada){
-        return repository.save(chamada);
+        chamada = repository.save(chamada);
+        chamada.setAluno(alunoService.findById(chamada.getAluno().getId()));
+        return chamada;
     }
 
     public Chamada update(Long id, Chamada dados){

@@ -1,5 +1,6 @@
 package com.controlechamada.chamada.resources;
 
+import com.controlechamada.chamada.domain.dto.TurmaDTO;
 import com.controlechamada.chamada.domain.entities.Aluno;
 import com.controlechamada.chamada.domain.entities.Chamada;
 import com.controlechamada.chamada.domain.entities.Turma;
@@ -61,8 +62,9 @@ public class AlunoResource {
     }
 
     @GetMapping("/{id}/turma")
-    public ResponseEntity<Turma> getTurma(@PathVariable Long id){
+    public ResponseEntity<TurmaDTO> getTurma(@PathVariable Long id){
         Aluno aluno = service.findById(id);
-        return ResponseEntity.ok(aluno.getTurma());
+        TurmaDTO turma = new TurmaDTO(aluno.getTurma());
+        return ResponseEntity.ok(turma);
     }
 }

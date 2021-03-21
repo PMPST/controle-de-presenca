@@ -1,6 +1,7 @@
 package com.controlechamada.chamada.domain.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -31,6 +32,7 @@ public class Chamada implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "aluno_id")
+    @JsonProperty(value = "aluno", access = JsonProperty.Access.WRITE_ONLY)
     private Aluno aluno;
 
 
@@ -77,7 +79,7 @@ public class Chamada implements Serializable {
         this.aula = aula;
     }
 
-    @JsonIgnore
+
     public Aluno getAluno() {
         return aluno;
     }
